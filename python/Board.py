@@ -10,16 +10,16 @@ class Board(object):
                 tile = Tile()
                 tile.X = i
                 tile.Y = j
-                tile.Symbol = ' '
+                tile.enums.Symbol = ' '
                 self._plays.append(tile)
 
     def AddTileAt(self, symbol, x, y):
         new_tile = Tile()
         new_tile.X = x
         new_tile.Y = y
-        new_tile.Symbol = symbol
+        new_tile.enums.Symbol = symbol
 
-        self.TileAt(x, y).Symbol = symbol
+        self.TileAt(x, y).enums.Symbol = symbol
 
     def TileAt(self, x, y):
         for t in self._plays:

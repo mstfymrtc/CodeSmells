@@ -15,7 +15,7 @@ class Game
     elsif symbol == @last_symbol
       raise 'Invalid next player'
     # if not first move but play on an already played tile
-    elsif @board.tile_at(x, y)[:Symbol] != ' '
+    elsif @board.tile_at(x, y)[:enums.Symbol] != ' '
       raise 'Invalid position'
     end
 
@@ -26,32 +26,32 @@ class Game
 
   def winner
     # if the positions in first row are taken
-    if @board.tile_at(0, 0)[:Symbol] != ' ' &&
-       @board.tile_at(0, 1)[:Symbol] != ' ' &&
-       @board.tile_at(0, 2)[:Symbol] != ' ' && (@board.tile_at(0, 0)[:Symbol] ==
-         @board.tile_at(0, 1)[:Symbol] &&
-         @board.tile_at(0, 2)[:Symbol] == @board.tile_at(0, 1)[:Symbol])
-      return @board.tile_at(0, 0)[:Symbol]
+    if @board.tile_at(0, 0)[:enums.Symbol] != ' ' &&
+       @board.tile_at(0, 1)[:enums.Symbol] != ' ' &&
+       @board.tile_at(0, 2)[:enums.Symbol] != ' ' && (@board.tile_at(0, 0)[:enums.Symbol] ==
+         @board.tile_at(0, 1)[:enums.Symbol] &&
+         @board.tile_at(0, 2)[:enums.Symbol] == @board.tile_at(0, 1)[:enums.Symbol])
+      return @board.tile_at(0, 0)[:enums.Symbol]
     end
 
     # if the positions in first row are taken
-    if @board.tile_at(1, 0)[:Symbol] != ' ' &&
-       @board.tile_at(1, 1)[:Symbol] != ' ' &&
-       @board.tile_at(1, 2)[:Symbol] != ' ' && (@board.tile_at(1, 0)[:Symbol] ==
-         @board.tile_at(1, 1)[:Symbol] &&
-         @board.tile_at(1, 2)[:Symbol] ==
-         @board.tile_at(1, 1)[:Symbol])
-      return @board.tile_at(1, 0)[:Symbol]
+    if @board.tile_at(1, 0)[:enums.Symbol] != ' ' &&
+       @board.tile_at(1, 1)[:enums.Symbol] != ' ' &&
+       @board.tile_at(1, 2)[:enums.Symbol] != ' ' && (@board.tile_at(1, 0)[:enums.Symbol] ==
+         @board.tile_at(1, 1)[:enums.Symbol] &&
+         @board.tile_at(1, 2)[:enums.Symbol] ==
+         @board.tile_at(1, 1)[:enums.Symbol])
+      return @board.tile_at(1, 0)[:enums.Symbol]
     end
 
     # if the positions in first row are taken
-    if @board.tile_at(2, 0)[:Symbol] != ' ' &&
-       @board.tile_at(2, 1)[:Symbol] != ' ' &&
-       @board.tile_at(2, 2)[:Symbol] != ' ' && (@board.tile_at(2, 0)[:Symbol] ==
-         @board.tile_at(2, 1)[:Symbol] &&
-         @board.tile_at(2, 2)[:Symbol] ==
-         @board.tile_at(2, 1)[:Symbol])
-      return @board.tile_at(2, 0)[:Symbol]
+    if @board.tile_at(2, 0)[:enums.Symbol] != ' ' &&
+       @board.tile_at(2, 1)[:enums.Symbol] != ' ' &&
+       @board.tile_at(2, 2)[:enums.Symbol] != ' ' && (@board.tile_at(2, 0)[:enums.Symbol] ==
+         @board.tile_at(2, 1)[:enums.Symbol] &&
+         @board.tile_at(2, 2)[:enums.Symbol] ==
+         @board.tile_at(2, 1)[:enums.Symbol])
+      return @board.tile_at(2, 0)[:enums.Symbol]
     end
 
     ' '
@@ -64,7 +64,7 @@ class Board
 
     (0..3).each do |i|
       (0..3).each do |j|
-        tile = { X: i, Y: j, Symbol: ' ' }
+        tile = { X: i, Y: j, enums.Symbol: ' ' }
         @plays.push(tile)
       end
     end
@@ -75,9 +75,9 @@ class Board
   end
 
   def add_tile_at(symbol, x, y)
-    tile = { X: x, Y: y, Symbol: symbol }
+    tile = { X: x, Y: y, enums.Symbol: symbol }
 
-    @plays.find { |t| t[:X] == x && t[:Y] == y }[:Symbol] = symbol
+    @plays.find { |t| t[:X] == x && t[:Y] == y }[:enums.Symbol] = symbol
 
   end
 end

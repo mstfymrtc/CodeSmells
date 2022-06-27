@@ -17,7 +17,7 @@ class Game {
             throw "Invalid next player";
         }
         //if not first move but play on an already played tile
-        else if (self._board.TileAt(x:x, y:y)!.Symbol != " ") {
+        else if (self._board.TileAt(x:x, y:y)!.enums.Symbol != " ") {
             throw "Invalid position";
         }
 
@@ -28,40 +28,40 @@ class Game {
 
     public func Winner() -> String {
         //if the positions in first row are taken
-        if (self._board.TileAt(x:0, y:0)!.Symbol != " " &&
-            self._board.TileAt(x:0, y:1)!.Symbol != " " &&
-            self._board.TileAt(x:0, y:2)!.Symbol != " ") {
+        if (self._board.TileAt(x:0, y:0)!.enums.Symbol != " " &&
+            self._board.TileAt(x:0, y:1)!.enums.Symbol != " " &&
+            self._board.TileAt(x:0, y:2)!.enums.Symbol != " ") {
             //if first row is full with same symbol
-            if (self._board.TileAt(x:0, y:0)!.Symbol ==
-                self._board.TileAt(x:0, y:1)!.Symbol &&
-                self._board.TileAt(x:0, y:2)!.Symbol == self._board.TileAt(x:0, y:1)!.Symbol) {
-                return self._board.TileAt(x:0, y:0)!.Symbol;
+            if (self._board.TileAt(x:0, y:0)!.enums.Symbol ==
+                self._board.TileAt(x:0, y:1)!.enums.Symbol &&
+                self._board.TileAt(x:0, y:2)!.enums.Symbol == self._board.TileAt(x:0, y:1)!.enums.Symbol) {
+                return self._board.TileAt(x:0, y:0)!.enums.Symbol;
             }
         }
 
         //if the positions in first row are taken
-        if (self._board.TileAt(x:1, y:0)!.Symbol != " " &&
-            self._board.TileAt(x:1, y:1)!.Symbol != " " &&
-            self._board.TileAt(x:1, y:2)!.Symbol != " ") {
+        if (self._board.TileAt(x:1, y:0)!.enums.Symbol != " " &&
+            self._board.TileAt(x:1, y:1)!.enums.Symbol != " " &&
+            self._board.TileAt(x:1, y:2)!.enums.Symbol != " ") {
             //if middle row is full with same symbol
-            if (self._board.TileAt(x:1, y:0)!.Symbol ==
-                self._board.TileAt(x:1, y:1)!.Symbol &&
-                self._board.TileAt(x:1, y:2)!.Symbol ==
-                self._board.TileAt(x:1, y:1)!.Symbol) {
-                return self._board.TileAt(x:1, y:0)!.Symbol;
+            if (self._board.TileAt(x:1, y:0)!.enums.Symbol ==
+                self._board.TileAt(x:1, y:1)!.enums.Symbol &&
+                self._board.TileAt(x:1, y:2)!.enums.Symbol ==
+                self._board.TileAt(x:1, y:1)!.enums.Symbol) {
+                return self._board.TileAt(x:1, y:0)!.enums.Symbol;
             }
         }
 
         //if the positions in first row are taken
-        if (self._board.TileAt(x:2, y:0)!.Symbol != " " &&
-            self._board.TileAt(x:2, y:1)!.Symbol != " " &&
-            self._board.TileAt(x:2, y:2)!.Symbol != " ") {
+        if (self._board.TileAt(x:2, y:0)!.enums.Symbol != " " &&
+            self._board.TileAt(x:2, y:1)!.enums.Symbol != " " &&
+            self._board.TileAt(x:2, y:2)!.enums.Symbol != " ") {
             //if middle row is full with same symbol
-            if (self._board.TileAt(x:2, y:0)!.Symbol ==
-                self._board.TileAt(x:2, y:1)!.Symbol &&
-                self._board.TileAt(x:2, y:2)!.Symbol ==
-                self._board.TileAt(x:2, y:1)!.Symbol) {
-                return self._board.TileAt(x:2, y:0)!.Symbol;
+            if (self._board.TileAt(x:2, y:0)!.enums.Symbol ==
+                self._board.TileAt(x:2, y:1)!.enums.Symbol &&
+                self._board.TileAt(x:2, y:2)!.enums.Symbol ==
+                self._board.TileAt(x:2, y:1)!.enums.Symbol) {
+                return self._board.TileAt(x:2, y:0)!.enums.Symbol;
             }
         }
 
@@ -73,7 +73,7 @@ struct Tile
 {
     public let X: Int;
     public let Y: Int;
-    public var Symbol: String;
+    public var enums.Symbol: String;
 }
 
 class Board
@@ -84,7 +84,7 @@ class Board
     {
         for i in 0...2 {
             for j in 0...2 {
-                let tile : Tile = Tile( X : i, Y : j, Symbol : " ")
+                let tile : Tile = Tile( X : i, Y : j, enums.Symbol : " ")
                 self._plays.append(tile);
             }
         }
@@ -96,9 +96,9 @@ class Board
 
     public func AddTileAt(symbol: String, x: Int, y: Int)
     {
-        var tile : Tile = Tile( X : x, Y : y, Symbol : symbol)
+        var tile : Tile = Tile( X : x, Y : y, enums.Symbol : symbol)
 
-        _plays = _plays.map{ return $0.X == x && $0.Y == y ? Tile(X : $0.X, Y : $0.Y, Symbol : symbol) : $0 }
+        _plays = _plays.map{ return $0.X == x && $0.Y == y ? Tile(X : $0.X, Y : $0.Y, enums.Symbol : symbol) : $0 }
     }
 }
 

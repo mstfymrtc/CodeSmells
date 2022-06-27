@@ -1,3 +1,5 @@
+import enums.Symbol;
+
 public class Game {
     private Symbol _lastSymbol = Symbol.EMPTY;
     private Board _board = new Board();
@@ -15,55 +17,45 @@ public class Game {
             throw new Exception("Invalid next player");
         }
         //if not first move but play on an already played tile
-        else if (_board.TileAt(new Location(x, y)).symbol != Symbol.EMPTY) {
+        else if (_board.tileAt(new Location(x, y)).symbol != Symbol.EMPTY) {
             throw new Exception("Invalid position");
         }
 
         // update game state
         _lastSymbol = symbol;
-        _board.AddTileAt(symbol, new Location(x, y));
+        _board.addTileAt(symbol, new Location(x, y));
     }
 
     public Symbol Winner() {
-        //if the positions in first row are taken
-        if (_board.TileAt(new Location(0, 0)).symbol != Symbol.EMPTY &&
-                _board.TileAt(new Location(0, 1)).symbol != Symbol.EMPTY &&
-                _board.TileAt(new Location(0, 2)).symbol != Symbol.EMPTY) {
-            //if first row is full with same symbol
-            if (_board.TileAt(new Location(0, 0)).symbol ==
-                    _board.TileAt(new Location(0, 1)).symbol &&
-                    _board.TileAt(new Location(0, 2)).symbol == _board.TileAt(new Location(0, 1)).symbol) {
-                return _board.TileAt(new Location(0, 0)).symbol;
-            }
-        }
-
-        //if the positions in first row are taken
-        if (_board.TileAt(new Location(1, 0)).symbol != Symbol.EMPTY &&
-                _board.TileAt(new Location(1, 1)).symbol != Symbol.EMPTY &&
-                _board.TileAt(new Location(1, 2)).symbol != Symbol.EMPTY) {
-            //if middle row is full with same symbol
-            if (_board.TileAt(new Location(1, 0)).symbol ==
-                    _board.TileAt(new Location(1, 1)).symbol &&
-                    _board.TileAt(new Location(1, 2)).symbol ==
-                            _board.TileAt(new Location(1, 1)).symbol) {
-                return _board.TileAt(new Location(1, 0)).symbol;
-            }
-        }
-
-        //if the positions in first row are taken
-        if (_board.TileAt(new Location(2, 0)).symbol != Symbol.EMPTY &&
-                _board.TileAt(new Location(2, 1)).symbol != Symbol.EMPTY &&
-                _board.TileAt(new Location(2, 2)).symbol != Symbol.EMPTY) {
-            //if middle row is full with same symbol
-            if (_board.TileAt(new Location(2, 0)).symbol ==
-                    _board.TileAt(new Location(2, 1)).symbol &&
-                    _board.TileAt(new Location(2, 2)).symbol ==
-                            _board.TileAt(new Location(2, 1)).symbol) {
-                return _board.TileAt(new Location(2, 0)).symbol;
-            }
-        }
+        if (checkThePositionsInRows(0)) return _board.tileAt(new Location(0, 0)).symbol;
+        if (checkThePositionsInRows(1)) return _board.tileAt(new Location(1, 0)).symbol;
+        if (checkThePositionsInRows(2)) return _board.tileAt(new Location(2, 0)).symbol;
 
         return Symbol.EMPTY;
+    }
+
+    private boolean checkThePositionsInRows(int row) {
+        //if the positions in first row are taken
+        if (checkTheEmptyPositionsInCols(row)) {
+            //if middle row is full with same symbol
+            if (checkTheIdenticalValuesInRow(row)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkTheIdenticalValuesInRow(int row) {
+        return _board.tileAt(new Location(row, 0)).symbol ==
+                _board.tileAt(new Location(row, 1)).symbol &&
+                _board.tileAt(new Location(row, 2)).symbol ==
+                        _board.tileAt(new Location(row, 1)).symbol;
+    }
+
+    private boolean checkTheEmptyPositionsInCols(int row) {
+        return _board.tileAt(new Location(row, 0)).symbol != Symbol.EMPTY &&
+                _board.tileAt(new Location(row, 1)).symbol != Symbol.EMPTY &&
+                _board.tileAt(new Location(row, 2)).symbol != Symbol.EMPTY;
     }
 }
 

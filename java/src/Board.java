@@ -1,3 +1,5 @@
+import enums.Symbol;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,14 +9,13 @@ public class Board {
     public Board() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                Tile tile = new Tile(new Location(i, j));
-                tile.symbol = Symbol.EMPTY;
+                Tile tile = new Tile(new Location(i, j), Symbol.EMPTY);
                 _plays.add(tile);
             }
         }
     }
 
-    public Tile TileAt(Location location) {
+    public Tile tileAt(Location location) {
         for (Tile t : _plays) {
             if (t.isLocatedAt(location)) {
                 return t;
@@ -23,10 +24,8 @@ public class Board {
         return null;
     }
 
-    public void AddTileAt(Symbol symbol, Location location) {
-        Tile newTile = new Tile(location);
-        newTile.symbol = symbol;
-
-        TileAt(location).symbol = symbol;
+    public void addTileAt(Symbol symbol, Location location) {
+        tileAt(location).symbol = symbol;
     }
+
 }
