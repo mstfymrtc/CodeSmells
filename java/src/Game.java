@@ -15,51 +15,51 @@ public class Game {
             throw new Exception("Invalid next player");
         }
         //if not first move but play on an already played tile
-        else if (_board.TileAt(x, y).Symbol != ' ') {
+        else if (_board.TileAt(new Location(x, y)).Symbol != ' ') {
             throw new Exception("Invalid position");
         }
 
         // update game state
         _lastSymbol = symbol;
-        _board.AddTileAt(symbol, x, y);
+        _board.AddTileAt(symbol, new Location(x, y));
     }
 
     public char Winner() {
         //if the positions in first row are taken
-        if (_board.TileAt(0, 0).Symbol != ' ' &&
-                _board.TileAt(0, 1).Symbol != ' ' &&
-                _board.TileAt(0, 2).Symbol != ' ') {
+        if (_board.TileAt(new Location(0, 0)).Symbol != ' ' &&
+                _board.TileAt(new Location(0, 1)).Symbol != ' ' &&
+                _board.TileAt(new Location(0, 2)).Symbol != ' ') {
             //if first row is full with same symbol
-            if (_board.TileAt(0, 0).Symbol ==
-                    _board.TileAt(0, 1).Symbol &&
-                    _board.TileAt(0, 2).Symbol == _board.TileAt(0, 1).Symbol) {
-                return _board.TileAt(0, 0).Symbol;
+            if (_board.TileAt(new Location(0, 0)).Symbol ==
+                    _board.TileAt(new Location(0, 1)).Symbol &&
+                    _board.TileAt(new Location(0, 2)).Symbol == _board.TileAt(new Location(0, 1)).Symbol) {
+                return _board.TileAt(new Location(0, 0)).Symbol;
             }
         }
 
         //if the positions in first row are taken
-        if (_board.TileAt(1, 0).Symbol != ' ' &&
-                _board.TileAt(1, 1).Symbol != ' ' &&
-                _board.TileAt(1, 2).Symbol != ' ') {
+        if (_board.TileAt(new Location(1, 0)).Symbol != ' ' &&
+                _board.TileAt(new Location(1, 1)).Symbol != ' ' &&
+                _board.TileAt(new Location(1, 2)).Symbol != ' ') {
             //if middle row is full with same symbol
-            if (_board.TileAt(1, 0).Symbol ==
-                    _board.TileAt(1, 1).Symbol &&
-                    _board.TileAt(1, 2).Symbol ==
-                            _board.TileAt(1, 1).Symbol) {
-                return _board.TileAt(1, 0).Symbol;
+            if (_board.TileAt(new Location(1, 0)).Symbol ==
+                    _board.TileAt(new Location(1, 1)).Symbol &&
+                    _board.TileAt(new Location(1, 2)).Symbol ==
+                            _board.TileAt(new Location(1, 1)).Symbol) {
+                return _board.TileAt(new Location(1, 0)).Symbol;
             }
         }
 
         //if the positions in first row are taken
-        if (_board.TileAt(2, 0).Symbol != ' ' &&
-                _board.TileAt(2, 1).Symbol != ' ' &&
-                _board.TileAt(2, 2).Symbol != ' ') {
+        if (_board.TileAt(new Location(2, 0)).Symbol != ' ' &&
+                _board.TileAt(new Location(2, 1)).Symbol != ' ' &&
+                _board.TileAt(new Location(2, 2)).Symbol != ' ') {
             //if middle row is full with same symbol
-            if (_board.TileAt(2, 0).Symbol ==
-                    _board.TileAt(2, 1).Symbol &&
-                    _board.TileAt(2, 2).Symbol ==
-                            _board.TileAt(2, 1).Symbol) {
-                return _board.TileAt(2, 0).Symbol;
+            if (_board.TileAt(new Location(2, 0)).Symbol ==
+                    _board.TileAt(new Location(2, 1)).Symbol &&
+                    _board.TileAt(new Location(2, 2)).Symbol ==
+                            _board.TileAt(new Location(2, 1)).Symbol) {
+                return _board.TileAt(new Location(2, 0)).Symbol;
             }
         }
 
