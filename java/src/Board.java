@@ -8,7 +8,7 @@ public class Board {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 Tile tile = new Tile(new Location(i, j));
-                tile.Symbol = ' ';
+                tile.symbol = Symbol.EMPTY;
                 _plays.add(tile);
             }
         }
@@ -23,10 +23,10 @@ public class Board {
         return null;
     }
 
-    public void AddTileAt(char symbol, Location location) {
+    public void AddTileAt(Symbol symbol, Location location) {
         Tile newTile = new Tile(location);
-        newTile.Symbol = symbol;
+        newTile.symbol = symbol;
 
-        TileAt(location).Symbol = symbol;
+        TileAt(location).symbol = symbol;
     }
 }
